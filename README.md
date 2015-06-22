@@ -1,5 +1,6 @@
+# TB-specific gradle plugin made after the work by Xyarilty
 # gradle-treasureboat-plugin
-## Building WebObject / treasureboat applications with Gradle
+## Building WebObjects / TreasureBoat applications with Gradle
 
 
 gradle-treasureboat-plugin is a Gradle helper plugin to build WebObjects / [Project treasureboat](http://www.wocommunity.org) based applications. It provides basic facilities to accomodate the specific project structure and requirements of WO applications and helps deploying them in a test environment.
@@ -56,3 +57,5 @@ Check out the plugin and run `gradle build publishToMavenLocal` to publish into 
 ## License
 
 See LICENSE, forks and pull requests are welcome.
+=======
+# tb-gradle-plugin
