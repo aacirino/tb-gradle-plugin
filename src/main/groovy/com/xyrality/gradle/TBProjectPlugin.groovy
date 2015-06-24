@@ -262,13 +262,13 @@ class TBProject implements Plugin<Project> {
 			def wonderVersion = project.treasureboat.wonderVersion
 			def webobjectsVersion = project.treasureboat.webobjectsVersion
 
-			compile group: 'wonder.core', name: 'ERExtensions', version: wonderVersion
-			compile group: 'wonder.core', name: 'ERFoundation', version: '1.0'
-			compile group: 'wonder.core', name: 'ERWebObjects', version: '1.0'
-			compile group: 'wonder.core', name: 'ERPrototypes', version: wonderVersion
-			compile group: 'com.webobjects', name: 'JavaEOAccess', version: webobjectsVersion
+			//compile group: 'wonder.core', name: 'ERExtensions', version: wonderVersion
+			//compile group: 'wonder.core', name: 'ERFoundation', version: '1.0'
+			//compile group: 'wonder.core', name: 'ERWebObjects', version: '1.0'
+			//compile group: 'wonder.core', name: 'ERPrototypes', version: wonderVersion
+			//compile group: 'com.webobjects', name: 'JavaEOAccess', version: webobjectsVersion
 			compile group: 'com.webobjects', name: 'JavaEOControl', version: webobjectsVersion
-			compile group: 'com.webobjects', name: 'JavaFoundation', version: webobjectsVersion
+			//compile group: 'com.webobjects', name: 'JavaFoundation', version: webobjectsVersion
 			compile group: 'com.webobjects', name: 'JavaWebObjects', version: webobjectsVersion
 			compile group: 'com.webobjects', name: 'JavaJDBCAdaptor', version: webobjectsVersion
 			compile group: 'org.eclipse.jdt', name:'org.eclipse.jdt.annotation', version:'2.0.0.v20140415-1436'
@@ -281,9 +281,9 @@ class TBProject implements Plugin<Project> {
 
 		project.dependencies {
 			testCompile 'org.mockito:mockito-all:1.10.19'
-			testCompile group: 'com.wounit', name: 'wounit', version: '1.2.+'
-			testCompile group: 'junit', name: 'junit', version: '4.+'
-//			testCompile group: 'treasureboat.eoadaptors', name: 'JavaMemoryAdaptor', version: tbVersion
+			testCompile group: 'junit', name: 'junit', version: '4.12+'
+			//testCompile group: 'com.wounit', name: 'wounit', version: '1.2.+'
+			//testCompile group: 'treasureboat.eoadaptors', name: 'JavaMemoryAdaptor', version: tbVersion
 		}
 	}
 
