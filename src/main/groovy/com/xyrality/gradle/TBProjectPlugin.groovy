@@ -85,7 +85,7 @@ class TBProject implements Plugin<Project> {
 		project.with {
 			sourceSets {
 				main {
-					java { srcDirs = ['Sources']}
+					java { srcDirs = ['Sources', 'GeneratedEOs']}
 					resources { srcDirs = ['Resources']}
 				}
 				
@@ -267,10 +267,10 @@ class TBProject implements Plugin<Project> {
 			//compile group: 'wonder.core', name: 'ERWebObjects', version: '1.0'
 			//compile group: 'wonder.core', name: 'ERPrototypes', version: wonderVersion
 			//compile group: 'com.webobjects', name: 'JavaEOAccess', version: webobjectsVersion
-			compile group: 'com.webobjects', name: 'JavaEOControl', version: webobjectsVersion
+			//compile group: 'com.webobjects', name: 'JavaEOControl', version: webobjectsVersion
 			//compile group: 'com.webobjects', name: 'JavaFoundation', version: webobjectsVersion
-			compile group: 'com.webobjects', name: 'JavaWebObjects', version: webobjectsVersion
-			compile group: 'com.webobjects', name: 'JavaJDBCAdaptor', version: webobjectsVersion
+			//compile group: 'com.webobjects', name: 'JavaWebObjects', version: webobjectsVersion
+			//compile group: 'com.webobjects', name: 'JavaJDBCAdaptor', version: webobjectsVersion
 			compile group: 'org.eclipse.jdt', name:'org.eclipse.jdt.annotation', version:'2.0.0.v20140415-1436'
 		}
 	}

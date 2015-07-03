@@ -50,7 +50,7 @@ class TBApplication extends TBProject {
 		}
 
 		project.build.dependsOn project.TBApplicationTarGz
-		project.test.dependsOn project.TBApplication
+		project.test.dependsOn project.tbapplication
 	}
 
 	def configureDeployTasks(Project project) {
@@ -87,7 +87,7 @@ class TBApplication extends TBProject {
 						additionalSSHParameters = '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 					} 
 					
-					task(copyTaskName, type: Exec, dependsOn: TBApplication) {
+					task(copyTaskName, type: Exec, dependsOn: tbapplication) {
 						description = taskDescription
 						workingDir buildDir
 						def sshCommand = String.format('tar -C "%s" -zcf - ./ | ssh %s -p %d %s@%s "mkdir -p %s && tar -C %s -zxf -"', woaName, additionalSSHParameters, deploymentSSHPort, deploymentSSHUser, deploymentServer, destinationPath, destinationPath)
@@ -152,7 +152,7 @@ class TBApplication extends TBProject {
 
 	def configureTBApplicationTasks(Project project) {
 		project.with {
-			task('TBApplication', dependsOn: [classes, copyDependencies]) {
+			task('tbapplication', dependsOn: [classes, copyDependencies]) {
 				description 'Build this framework as WebObjects application'
 
 				inputs.dir(sourceSets.main.output.classesDir)
@@ -164,7 +164,7 @@ class TBApplication extends TBProject {
 
 				doLast {
 					if (project.treasureboat.applicationClass.length() == 0) {
-						throw new InvalidUserDataException('TBApplication builds need to define an applicationClass property on the project level!')
+						throw new InvalidUserDataException('tbapplication builds need to define an applicationClass property on the project level!')
 					}
 
 					sourceSets.main.output.classesDir.mkdirs()
@@ -173,8 +173,8 @@ class TBApplication extends TBProject {
 					dependencyLibDir.mkdirs()
 					dependencyFrameworksDir.mkdirs()
 
-					ant.taskdef(name:'TBApplication', classname:'org.objectstyle.TBProject.ant.TBApplication', classpath: configurations.TBProject.asPath)
-					ant.TBApplication(name:project.name, destDir:project.buildDir, javaVersion:project.targetCompatibility, principalClass:project.treasureboat.applicationClass, cfBundleVersion: project.version, cfBundleShortVersion: project.version, frameworksBaseURL: "/WebObjects/${project.name}.woa/Contents/Frameworks") {
+					ant.taskdef(name:'tbapplication', classname:'org.objectstyle.woproject.ant.WOApplication', classpath: configurations.tbproject.asPath)
+					ant.tbapplication(name:project.name, destDir:project.buildDir, javaVersion:project.targetCompatibility, principalClass:project.treasureboat.applicationClass, cfBundleVersion: project.version, cfBundleShortVersion: project.version, frameworksBaseURL: "/WebObjects/${project.name}.woa/Contents/Frameworks") {
 						classes(dir:sourceSets.main.output.classesDir)
 						resources(dir:sourceSets.main.output.resourcesDir)
 						wsresources(dir:sourceSets.webserver.output.resourcesDir)
@@ -186,7 +186,7 @@ class TBApplication extends TBProject {
 				}
 			}
 
-			task('TBApplicationTarGz', type: Tar, dependsOn: [TBApplication]) {
+			task('TBApplicationTarGz', type: Tar, dependsOn: [tbapplication]) {
 				description 'Build a .tar.gz file containing the complete application'
 
 				extension = 'tar.gz'
